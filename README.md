@@ -1,8 +1,12 @@
-# Node.js REST Application Example for Guide-Rails® Onboarding
+# Guide-Rails Demo using a Node.js REST Application Example
 
-This is the Node.js sample repository to be used for the Node.js tutorial found in the Guide-Rails® documentation.
+Learn how to get started with Guide-Rails full CI/CD pipelines using this sample
+Node.js application. Check out the [Tutorial](https://guide-rails.calculi.io/help/tutorials/nodejs/nodejs.html)
 
 ## Requirements
 
 * Node.js 10
-# guide-rails-demo-noderest-javascript-nodejs
+
+## Guide-Rails properties
+
+This demo application expects that the following properties are set.
