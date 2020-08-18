@@ -1,6 +1,6 @@
 {
 	"metadata": {
-		"version": 1
+		"version": 2
 	},
 	"application": {
 		"name": "noderest",
@@ -28,47 +28,12 @@
 			{
 				"name": "Build",
 				"segment_type": "build",
-				"job_steps": [
-					{
-						"name": "Dependencies",
-						"definition": "Dependencies",
-						"command": "npm install",
-						"properties": null
-					},
-					{
-						"name": "Lint",
-						"definition": "Eslint",
-						"command": "set +e\nnpm run lint",
-						"properties": null
-					},
-					{
-						"name": "Test",
-						"definition": "Test",
-						"command": "npm test",
-						"properties": null
-					},
-					{
-						"name": "Copy reports",
-						"definition": "Copy reports",
-						"command": "cp coverage/cobertura-coverage.xml coverage.xml",
-						"properties": null
-					},
-					{
-						"name": "Package app",
-						"definition": "Package app",
-						"command": "npm pack",
-						"properties": null
-					}
-				],
 				"exit_actions": {
 					"default": {
 						"fetch_logs": true,
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": {
@@ -80,10 +45,7 @@
 					"on_success": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": null
@@ -91,10 +53,7 @@
 					"on_failure": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": null
@@ -102,10 +61,7 @@
 					"on_abort": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": null
@@ -119,43 +75,31 @@
 					}
 				],
 				"deployment_strategy": {},
-				"application_init": {
-					"command": "",
-					"arguments": null
-				},
+				"application_init": {},
 				"packages": [
 					{
 						"name": "noderest",
-						"dependencies": [],
 						"downloads": [],
 						"files": [
 							"noderest-1.0.0.tgz"
-						],
-						"package_install_command": "",
-						"installed_path": ""
+						]
 					},
 					{
 						"name": "nodejs",
-						"dependencies": [],
 						"downloads": [
 							{
 								"link": "https://nodejs.org/dist/v10.16.3/node-v10.16.3-linux-x64.tar.xz",
 								"name": "nodejs.tar.xz"
 							}
 						],
-						"files": [],
-						"package_install_command": "set -ex\ntar xf nodejs/nodejs.tar.xz\ncp -R node-v*-linux-x64/* ${BOSH_INSTALL_TARGET}",
-						"installed_path": ""
+						"package_install_command": "set -ex\ntar xf nodejs/nodejs.tar.xz\ncp -R node-v*-linux-x64/* ${BOSH_INSTALL_TARGET}"
 					},
 					{
 						"name": "node_modules",
-						"dependencies": [],
 						"downloads": [],
 						"files": [
 							"node_modules"
-						],
-						"package_install_command": "",
-						"installed_path": ""
+						]
 					}
 				],
 				"instance_tags": [
@@ -182,7 +126,44 @@
 					"paths": [
 						"((npm.cache))"
 					]
-				}
+				},
+				"tasks": [
+					{
+						"name": "noderest",
+						"steps": [
+							{
+								"name": "Dependencies",
+								"definition": "Dependencies",
+								"command": "npm install",
+								"properties": null
+							},
+							{
+								"name": "Lint",
+								"definition": "Eslint",
+								"command": "set +e\nnpm run lint",
+								"properties": null
+							},
+							{
+								"name": "Test",
+								"definition": "Test",
+								"command": "npm test",
+								"properties": null
+							},
+							{
+								"name": "Copy reports",
+								"definition": "Copy reports",
+								"command": "cp coverage/cobertura-coverage.xml coverage.xml",
+								"properties": null
+							},
+							{
+								"name": "Package app",
+								"definition": "Package app",
+								"command": "npm pack",
+								"properties": null
+							}
+						]
+					}
+				]
 			},
 			{
 				"name": "Integration",
@@ -203,14 +184,10 @@
 						"fetch_logs": true,
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": {
-							"publish": false,
 							"properties": null
 						},
 						"delete_instances": true
@@ -218,42 +195,30 @@
 					"on_success": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": {
-							"publish": false,
 							"properties": null
 						}
 					},
 					"on_failure": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": {
-							"publish": false,
 							"properties": null
 						}
 					},
 					"on_abort": {
 						"notifications": [
 							{
-								"type": "slack",
-								"send_notification": false,
-								"to": null,
-								"message": ""
+								"type": "slack"
 							}
 						],
 						"code_analysis": {
-							"publish": false,
 							"properties": null
 						}
 					}
@@ -265,14 +230,9 @@
 					"update_watch_time": "5000-90000",
 					"serial": false
 				},
-				"application_init": {
-					"command": "",
-					"arguments": null
-				},
+				"application_init": {},
 				"process": {
-					"init": {
-						"command": ""
-					}
+					"init": {}
 				},
 				"package_dependencies": [
 					"nodejs",
@@ -289,14 +249,11 @@
 					{
 						"name": "((application.name))",
 						"number_of_instances": 1,
-						"persistent_disk_type": "",
+						"cloud_provider_name": "guide-rails-aws-us-west-2",
 						"vm_type": "default",
 						"os_type": "default",
 						"networks": [
-							"((deploy.target.network.integration))"
-						],
-						"availability_zones": [
-							"((deploy.target.zone.integration))"
+							"integration"
 						],
 						"deployment_strategy": {},
 						"dependencies": [
@@ -370,10 +327,7 @@
 				"fetch_logs": true,
 				"notifications": [
 					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
+						"type": "slack"
 					}
 				],
 				"code_analysis": {
@@ -385,10 +339,7 @@
 			"on_success": {
 				"notifications": [
 					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
+						"type": "slack"
 					}
 				],
 				"code_analysis": null
@@ -396,10 +347,7 @@
 			"on_failure": {
 				"notifications": [
 					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
+						"type": "slack"
 					}
 				],
 				"code_analysis": null
@@ -407,10 +355,7 @@
 			"on_abort": {
 				"notifications": [
 					{
-						"type": "slack",
-						"send_notification": false,
-						"to": null,
-						"message": ""
+						"type": "slack"
 					}
 				],
 				"code_analysis": null
@@ -433,10 +378,7 @@
 				"target_path": "bin/stop.sh"
 			}
 		],
-		"application_init": {
-			"command": "",
-			"arguments": null
-		},
+		"application_init": {},
 		"process": {
 			"init": {
 				"command": "bin/start.sh"
