@@ -140,7 +140,7 @@
 							{
 								"name": "Lint",
 								"definition": "Eslint",
-								"command": "set +e\nnpm run lint",
+								"command": "set +e\nnpm run lint\nset -e",
 								"properties": null
 							},
 							{
@@ -250,7 +250,11 @@
 						"name": "((application.name))",
 						"number_of_instances": 1,
 						"cloud_provider_name": "guide-rails",
+						"vm_type": "default",
 						"os_type": "default",
+						"networks": [
+							"integration"
+						],
 						"deployment_strategy": {
 							"canaries": 1,
 							"max_in_flight": 1,
