@@ -250,12 +250,14 @@
 						"name": "((application.name))",
 						"number_of_instances": 1,
 						"cloud_provider_name": "guide-rails-aws-us-west-2",
-						"vm_type": "default",
 						"os_type": "default",
-						"networks": [
-							"integration"
-						],
-						"deployment_strategy": {},
+						"deployment_strategy": {
+							"canaries": 1,
+							"max_in_flight": 1,
+							"canary_watch_time": "5000-90000",
+							"update_watch_time": "5000-90000",
+							"serial": false
+						},
 						"dependencies": [
 							{
 								"name": "consul",
