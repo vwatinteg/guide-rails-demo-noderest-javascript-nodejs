@@ -249,7 +249,7 @@
 					{
 						"name": "((application.name))",
 						"number_of_instances": 1,
-						"cloud_provider_name": "guide-rails-aws-us-west-2",
+						"cloud_provider_name": "guide-rails",
 						"os_type": "default",
 						"deployment_strategy": {
 							"canaries": 1,
