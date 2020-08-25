@@ -10,3 +10,4 @@ Node.js application. Check out the [Tutorial](https://guide-rails.calculi.io/hel
 ## Guide-Rails properties
 
 This demo application expects that the following properties are set.
+
